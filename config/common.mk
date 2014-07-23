@@ -67,7 +67,7 @@ SUPERUSER_EMBEDDED := true
 
 # Required packages
 PRODUCT_PACKAGES += \
-    Camera \
+    CellBroadcastReceiver \
     Development \
     SpareParts \
     Superuser \
@@ -156,13 +156,12 @@ endif
 # KitKat SlimKat freeze code
 PRODUCT_VERSION_MAJOR = 4.4.4
 PRODUCT_VERSION_MINOR = build
-PRODUCT_VERSION_MAINTENANCE = 6.4
+PRODUCT_VERSION_MAINTENANCE = 6.6
 ifdef SLIM_BUILD_EXTRA
     SLIM_POSTFIX := -$(SLIM_BUILD_EXTRA)
 endif
 ifndef SLIM_BUILD_TYPE
     SLIM_BUILD_TYPE := UNOFFICIAL
-    PLATFORM_VERSION_CODENAME := UNOFFICIAL
     SLIM_POSTFIX := $(shell date +"%Y%m%d")
 endif
 
