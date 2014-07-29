@@ -62,16 +62,23 @@ PRODUCT_COPY_FILES += \
     vendor/slim/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
     vendor/slim/prebuilt/common/bin/sysinit:system/bin/sysinit
 
-# Embed SuperUser
-SUPERUSER_EMBEDDED := true
+# Workaround for NovaLauncher zipalign fails
+PRODUCT_COPY_FILES += \
+    vendor/slim/prebuilt/common/app/NovaLauncher.apk:system/app/NovaLauncher.apk
+
+# Embed SuperSU
+PRODUCT_COPY_FILES += \
+    vendor/slim/prebuilt/common/app/Superuser.apk:system/app/Superuser.apk \
+    vendor/slim/prebuilt/common/xbin/su:system/xbin/su \
+    vendor/slim/prebuilt/common/xbin/sugote:system/xbin/sugote \
+    vendor/slim/prebuilt/common/xbin/daemonsu:system/xbin/daemonsu \
+    vendor/slim/prebuilt/common/etc/init.supersu.rc:root/init.supersu.rc
 
 # Required packages
 PRODUCT_PACKAGES += \
     CellBroadcastReceiver \
     Development \
-    SpareParts \
-    Superuser \
-    su
+    SpareParts
 
 # Optional packages
 PRODUCT_PACKAGES += \
@@ -80,8 +87,7 @@ PRODUCT_PACKAGES += \
     NoiseField \
     Galaxy4 \
     LiveWallpapersPicker \
-    PhaseBeam \
-    Launcher3
+    PhaseBeam
 
 # DSPManager
 PRODUCT_PACKAGES += \
@@ -156,7 +162,7 @@ endif
 # KitKat SlimKat freeze code
 PRODUCT_VERSION_MAJOR = 4.4.4
 PRODUCT_VERSION_MINOR = build
-PRODUCT_VERSION_MAINTENANCE = 6.6
+PRODUCT_VERSION_MAINTENANCE = 6.7
 ifdef SLIM_BUILD_EXTRA
     SLIM_POSTFIX := -$(SLIM_BUILD_EXTRA)
 endif
